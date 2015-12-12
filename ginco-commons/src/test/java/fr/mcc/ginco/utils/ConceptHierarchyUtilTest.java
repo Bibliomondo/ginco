@@ -37,13 +37,18 @@ import java.util.Set;
 
 import junit.framework.Assert;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import fr.mcc.ginco.beans.ThesaurusConcept;
 import fr.mcc.ginco.exceptions.BusinessException;
 
 public class ConceptHierarchyUtilTest {
 
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+	
 	@Test
 	public void testGetSuperOrdinateStandard() {
 
@@ -87,8 +92,8 @@ public class ConceptHierarchyUtilTest {
 		Assert.assertNull(rootsSuperOrdinateConcept);
 	}
 	
-	@Test(expected = BusinessException.class)
 	public void testGetSuperOrdinateNoSuperOrdinate() {
+		thrown.expect(BusinessException.class);
 		ThesaurusConcept c1 = new ThesaurusConcept();
 		c1.setIdentifier("c1");
 		
@@ -122,12 +127,13 @@ public class ConceptHierarchyUtilTest {
 		membersConcepts.add(c22);
 		membersConcepts.add(c23);
 
+		
 		ConceptHierarchyUtil
-				.getSuperOrdinate(membersConcepts);
+				.getSuperOrdinate(membersConcepts);		
 	}
 	
-	@Test(expected = BusinessException.class)
 	public void testMoreThanOneSuperOrdinate() {
+		thrown.expect(BusinessException.class);
 		ThesaurusConcept c1 = new ThesaurusConcept();
 		c1.setIdentifier("c1");
 		ThesaurusConcept c2 = new ThesaurusConcept();

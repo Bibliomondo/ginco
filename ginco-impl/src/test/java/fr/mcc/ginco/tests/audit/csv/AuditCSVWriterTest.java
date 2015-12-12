@@ -94,7 +94,7 @@ public class AuditCSVWriterTest {
 		out.flush();
 		out.close();
 
-		Assert.assertEquals(true, sw.toString().startsWith("log-journal.thesaurus-concept-created-event,2013-01-20 20:30:00,unknown.author,http://fakeconcept,http://faketerm,TP,concept-status[0],Old term lexical value,New term lexical Value,http://fakeconcept1,http://fakeconcept1|http://fakeconcept2"));
+		Assert.assertEquals(true, sw.toString().startsWith("log-journal.thesaurus-concept-created-event,2013-01-20 20:30:00,unknown.author,http://fakeconcept,http://faketerm,TP,concept-status[0],Old term lexical value,New term lexical Value,http://fakeconcept1,http://fakeconcept2|http://fakeconcept1"));
 		
 	}
 }

@@ -69,7 +69,7 @@ public class JournalLineTest {
 		line.setTermId("http://faketerm");
 		line.setTermRole("TP");				
 
-		Assert.assertEquals("log-journal.thesaurus-concept-created-event,2013-01-20 20:30:00,unknown.author,http://fakeconcept,http://faketerm,TP,concept-status[0],Old term lexical value,New term lexical Value,http://fakeconcept1,http://fakeconcept1|http://fakeconcept2", line.toString());
+		Assert.assertEquals("log-journal.thesaurus-concept-created-event,2013-01-20 20:30:00,unknown.author,http://fakeconcept,http://faketerm,TP,concept-status[0],Old term lexical value,New term lexical Value,http://fakeconcept1,http://fakeconcept2|http://fakeconcept1", line.toString());
 		
 	}
 	
