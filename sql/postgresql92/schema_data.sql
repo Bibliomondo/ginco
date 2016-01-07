@@ -1486,10 +1486,13 @@ SELECT pg_catalog.setval('external_thesaurus_type_identifier_seq', 1, false);
 --
 
 INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('fr-FR', 'fr', 'Français/France', true, true);
+INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('fr-fr', 'fr', 'Français/France', true, true);
 INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('en-US', 'en', 'Anglais/USA', true, true);
+INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('en-us', 'en', 'Anglais/USA', true, true);
 INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('it-IT', 'it', 'Italien/Italie', true, true);
 INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('de-DE', 'de', 'Allemand/Allemagne', true, true);
 INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('en-UK', 'en', 'Anglais/United Kingdom', true, false);
+INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('en-GB', 'en', 'Anglais/Great Britain', true, false);
 INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('cy', 'cy', 'Gallois', true, true);
 INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('de-CH', 'de', 'Allemand/suisse', true, false);
 INSERT INTO languages_iso639 (id, part1, ref_name, toplanguage, principallanguage) VALUES ('de-IT', 'de', 'Allemand/Italie', true, false);
