@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>fr.smile.mcc.ginco</groupId>
     <artifactId>ginco</artifactId>
-    <version>2.0.8-SNAPSHOT</version>
+    <version>2.0.9-SNAPSHOT</version>
     <name>Ginco</name>
     <packaging>pom</packaging>
 
@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.6</java.version>
         <!-- dependencies versions -->
-        <org.springframework.version>3.2.0.RELEASE</org.springframework.version>
+        <org.springframework.version>3.2.16.RELEASE</org.springframework.version>
         <org.springsecurity.version>3.1.3.RELEASE</org.springsecurity.version>
         <org.apache.cxf.version>2.7.2</org.apache.cxf.version>
         <org.commons.collections.version>3.2.1</org.commons.collections.version>
@@ -124,7 +124,8 @@
         <url>scm:git:https://github.com/culturecommunication/ginco.git</url>
         <connection>scm:git:git://github.com/culturecommunication/ginco.git</connection>
         <developerConnection>scm:git:git@github.com:culturecommunication/ginco.git</developerConnection>
-    </scm>
+      <tag>HEAD</tag>
+  </scm>
 
     <ciManagement>
         <system>continuum</system>
@@ -623,7 +624,7 @@
     </distributionManagement>
 
     <modules>
-        <!--<module>ginco-quality-tool-conf</module>-->
+        <!-- <module>ginco-quality-tool-conf</module>-->
         <module>ginco-api</module>
         <module>ginco-commons</module>
         <module>ginco-impl</module>
