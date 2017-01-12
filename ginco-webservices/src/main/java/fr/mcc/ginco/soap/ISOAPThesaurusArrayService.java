@@ -32,71 +32,31 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-package fr.mcc.ginco.data;
+package fr.mcc.ginco.soap;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import javax.jws.WebParam;
+import javax.jws.WebService;
 
-import fr.mcc.ginco.beans.Note;
-import fr.mcc.ginco.beans.ThesaurusTerm;
-import fr.mcc.ginco.enums.TermStatusEnum;
+import fr.mcc.ginco.data.ReducedThesaurusArray;
 
-public class ReducedThesaurusTerm {
+/**
+ * @author hufon
+ *
+ */
+@WebService
+public interface ISOAPThesaurusArrayService {
 	
-	private String identifier;
-	private String lexicalValue;
-	private String languageId;
-	private String conceptId;
-	private TermStatusEnum status;
-	private List<Note> notes;
+	/**
+	 * Return all thesaurusArrays for a given thesaurus
+	 * @param thesaurusId
+	 * @return
+	 */
+	List<ReducedThesaurusArray> getThesaurusArraysByThesaurusId(@WebParam(name = "thesaurusId") String thesaurusId);
 	
-	public String getIdentifier() {
-		return identifier;
-	}
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
-	}
-	public String getLexicalValue() {
-		return lexicalValue;
-	}
-	public void setLexicalValue(String lexicalValue) {
-		this.lexicalValue = StringEscapeUtils.unescapeXml(lexicalValue);
-	}
-	public String getLanguageId() {
-		return languageId;
-	}
-	public void setLanguageId(String languageId) {
-		this.languageId = languageId;
-	}
-	public String getConceptId() {
-		return conceptId;
-	}
-	public void setConceptId(String conceptId) {
-		this.conceptId = conceptId;
-	}
-	public TermStatusEnum getStatus() {
-		return status;
-	}
-	public void setStatus(TermStatusEnum status) {
-		this.status = status;
-	}
+	List<ReducedThesaurusArray> getThesaurusArraysWithTermsByThesaurusId(@WebParam(name = "thesaurusId") String thesaurusId);
 	
-	
-	
-	public static ReducedThesaurusTerm getReducedThesaurusTerm(ThesaurusTerm term) {
-		ReducedThesaurusTerm reducedTerm = new ReducedThesaurusTerm();
-		reducedTerm.setConceptId(term.getConcept().getIdentifier());
-		reducedTerm.setStatus(TermStatusEnum.getStatusByCode(term.getStatus()));
-		reducedTerm.setLanguageId(term.getLanguage().getId());
-		reducedTerm.setLexicalValue(term.getLexicalValue());
-		return reducedTerm;
-	}
-	public List<Note> getNotes() {
-		return notes;
-	}
-	public void setNotes(List<Note> notes) {
-		this.notes = notes;
-	}
+	ReducedThesaurusArray getThesaurusArrayWithTerms(@WebParam(name = "thesaurusArrayId") String thesaurusArrayId);
 
 }

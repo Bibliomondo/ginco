@@ -32,22 +32,67 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-package fr.mcc.ginco.enums;
+package fr.mcc.ginco.data;
 
-/**
- * This enum intended to list different available status for terms.
- * The translation of these items is externalized in a property file 
- */
-public enum TermStatusEnum {
-    CANDIDATE(0), VALIDATED(1), REJECTED(2);
-    
-    private int status;
-    
-    private TermStatusEnum(int status) {
-    	this.status = status;
-    }
-    
-    public int getStatus() {
-    	return status;
-    }
+import java.util.List;
+
+import org.apache.commons.lang3.StringEscapeUtils;
+
+import fr.mcc.ginco.beans.Note;
+import fr.mcc.ginco.beans.ThesaurusConcept;
+import fr.mcc.ginco.beans.ThesaurusTerm;
+import fr.mcc.ginco.enums.ConceptStatusEnum;
+import fr.mcc.ginco.enums.TermStatusEnum;
+
+public class ReducedThesaurusConcept {
+	
+	private String identifier;
+	private List<Note> notes;
+	private ConceptStatusEnum status;
+	
+	private List<ReducedThesaurusConcept> associates;
+	
+	private List<ReducedThesaurusConcept> parents;
+	
+	public String getIdentifier() {
+		return identifier;
+	}
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
+	}
+	
+	
+	
+	
+	public static ReducedThesaurusConcept getReducedThesaurusConcept(ThesaurusConcept concept) {
+		ReducedThesaurusConcept reducedConcept = new ReducedThesaurusConcept();
+		reducedConcept.setIdentifier(concept.getIdentifier());
+		reducedConcept.setStatus(ConceptStatusEnum.getStatusByCode(concept.getStatus()));
+		return reducedConcept;
+	}
+	public List<Note> getNotes() {
+		return notes;
+	}
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+	public ConceptStatusEnum getStatus() {
+		return status;
+	}
+	public void setStatus(ConceptStatusEnum status) {
+		this.status = status;
+	}
+	public List<ReducedThesaurusConcept> getAssociates() {
+		return associates;
+	}
+	public void setAssociates(List<ReducedThesaurusConcept> associates) {
+		this.associates = associates;
+	}
+	public List<ReducedThesaurusConcept> getParents() {
+		return parents;
+	}
+	public void setParents(List<ReducedThesaurusConcept> parents) {
+		this.parents = parents;
+	}
+
 }

@@ -35,44 +35,67 @@
 
 package fr.mcc.ginco.soap;
 
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import fr.mcc.ginco.exceptions.BusinessException;
-import fr.mcc.ginco.services.IThesaurusConceptService;
+import fr.mcc.ginco.beans.NodeLabel;
+import fr.mcc.ginco.beans.ThesaurusArray;
+import fr.mcc.ginco.data.ReducedThesaurusArray;
+import fr.mcc.ginco.services.INodeLabelService;
+import fr.mcc.ginco.services.IThesaurusArrayService;
 
 
 /**
  * Unit tests class for the ThesaurusConceptService
  * 
  */
-public class SOAPThesaurusConceptServiceTest {
+public class SOAPThesaurusArrayServiceTest {
 
 	@Mock(name = "thesaurusConceptService")
-	private IThesaurusConceptService thesaurusConceptService;
+	private IThesaurusArrayService thesaurusArrayService;
+	
+	@Mock(name = "nodeLabelService")
+	private INodeLabelService nodeLabelService;
 	
 	@InjectMocks
-	private SOAPThesaurusConceptServiceImpl soapThesaurusConceptService;
+	private SOAPThesaurusArrayServiceImpl soapThesaurusArrayService;
+	
+
 	
 	@Before
 	public void init() {
 		MockitoAnnotations.initMocks(this);	
 	}
 	
-	/**
-	 * Test the getConceptsHierarchicalRelations method with empty parameters
-	 */
-	
-	@Test(expected=BusinessException.class)
-	public final void testGetConceptsHierarchicalRelationsWithEmptyParameters(){
-		soapThesaurusConceptService.getConceptsHierarchicalRelations("", "");
+	@Test
+	public final void testGetArrayByThesaurusId(){
+		ThesaurusArray fakeArray = new ThesaurusArray();
+		fakeArray.setIdentifier("ar-1");
+		List<ThesaurusArray> fakeArrayList = new ArrayList<ThesaurusArray>();
+		fakeArrayList.add(fakeArray);
+		NodeLabel label = new NodeLabel();
+		label.setLexicalValue("test");
+		when(thesaurusArrayService.getAllThesaurusArrayByThesaurusId(anyString(), anyString())).thenReturn(fakeArrayList);
+		when(nodeLabelService.getByThesaurusArrayAndLanguage(Matchers.anyString())).thenReturn(label);
+		
+		
+		List<ReducedThesaurusArray> results = soapThesaurusArrayService.getThesaurusArraysByThesaurusId("fakeThesaurusId");
+		Assert.assertEquals(1,results.size());
+		Assert.assertEquals("ar-1",results.get(0).getIdentifier());
+		Assert.assertEquals("test",results.get(0).getTitle());
 	}
 	
-	@Test(expected=BusinessException.class)
-	public final void testGetPreferredTermByConceptId(){
-		soapThesaurusConceptService.getPreferredTermByConceptId("",true);
-	}
+	
+
 }

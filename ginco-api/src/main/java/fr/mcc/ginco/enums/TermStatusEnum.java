@@ -32,71 +32,32 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-package fr.mcc.ginco.data;
+package fr.mcc.ginco.enums;
 
-import java.util.List;
+/**
+ * This enum intended to list different available status for terms.
+ * The translation of these items is externalized in a property file 
+ */
+public enum TermStatusEnum {
+    CANDIDATE(0), VALIDATED(1), REJECTED(2);
+    
+    private int status;
+    
+    private TermStatusEnum(int status) {
+    	this.status = status;
+    }
+    
+    public int getStatus() {
+    	return status;
+    }
+    
+    public static TermStatusEnum getStatusByCode(int i) {
+		for (TermStatusEnum s : values()) {
+			if (s.getStatus() == i) {
+				return s;
+			}
+		}
 
-import org.apache.commons.lang3.StringEscapeUtils;
-
-import fr.mcc.ginco.beans.Note;
-import fr.mcc.ginco.beans.ThesaurusTerm;
-import fr.mcc.ginco.enums.TermStatusEnum;
-
-public class ReducedThesaurusTerm {
-	
-	private String identifier;
-	private String lexicalValue;
-	private String languageId;
-	private String conceptId;
-	private TermStatusEnum status;
-	private List<Note> notes;
-	
-	public String getIdentifier() {
-		return identifier;
+		return null;
 	}
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
-	}
-	public String getLexicalValue() {
-		return lexicalValue;
-	}
-	public void setLexicalValue(String lexicalValue) {
-		this.lexicalValue = StringEscapeUtils.unescapeXml(lexicalValue);
-	}
-	public String getLanguageId() {
-		return languageId;
-	}
-	public void setLanguageId(String languageId) {
-		this.languageId = languageId;
-	}
-	public String getConceptId() {
-		return conceptId;
-	}
-	public void setConceptId(String conceptId) {
-		this.conceptId = conceptId;
-	}
-	public TermStatusEnum getStatus() {
-		return status;
-	}
-	public void setStatus(TermStatusEnum status) {
-		this.status = status;
-	}
-	
-	
-	
-	public static ReducedThesaurusTerm getReducedThesaurusTerm(ThesaurusTerm term) {
-		ReducedThesaurusTerm reducedTerm = new ReducedThesaurusTerm();
-		reducedTerm.setConceptId(term.getConcept().getIdentifier());
-		reducedTerm.setStatus(TermStatusEnum.getStatusByCode(term.getStatus()));
-		reducedTerm.setLanguageId(term.getLanguage().getId());
-		reducedTerm.setLexicalValue(term.getLexicalValue());
-		return reducedTerm;
-	}
-	public List<Note> getNotes() {
-		return notes;
-	}
-	public void setNotes(List<Note> notes) {
-		this.notes = notes;
-	}
-
 }
